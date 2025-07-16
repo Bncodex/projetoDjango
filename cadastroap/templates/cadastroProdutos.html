@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Produtos</title>
+    
+    <style>
+        /* Estilos CSS internos */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Um cinza bem claro para o fundo */
+            color: #333; /* Texto principal em cinza escuro */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: #fff; /* Fundo branco para o container do formulário */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Sombra suave para profundidade */
+            width: 100%;
+            max-width: 500px;
+            box-sizing: border-box;
+            border: 1px solid #ddd; /* Borda cinza clara */
+        }
+
+        .title {
+            color: #333;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 2em;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc; /* Borda cinza médio */
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box; /* Garante que o padding não aumente a largura total */
+            background-color: #f9f9f9; /* Fundo levemente cinza para inputs */
+            color: #333;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="number"]:focus,
+        .form-group textarea:focus {
+            border-color: #999; /* Borda um pouco mais escura ao focar */
+            outline: none; /* Remove o outline padrão do navegador */
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .button {
+            background-color: #333; /* Botão em preto */
+            color: #fff; /* Texto do botão em branco */
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #555; /* Um tom de cinza mais escuro ao passar o mouse */
+        }
+
+        .link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .link a {
+            color: #666; /* Cor do link em cinza */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .link a:hover {
+            color: #333; /* Mais escuro ao passar o mouse */
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Cadastrar Novo Produto</h1>
+        <form method="post" class="form">
+            {% csrf_token %} {# Proteção CSRF obrigatória para formulários Django #}
+            
+            <div class="form-group">
+                <label for="nome_produto">Nome do Produto:</label>
+                <input type="text" id="nome_produto" name="nome" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="descricao">Descrição:</label>
+                <textarea id="descricao" name="descricao" rows="4"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="preco">Preço:</label>
+                <input type="number" id="preco" name="preco" step="0.01" required>
+            </div>
+            <p>
+            <div class="form-group">
+                <label for="quantidade">Quantidade:</label>
+                <input type="number" id="quantidade" name="quantidade" required>
+            </div>
+            </p>
+            
+            <button type="submit" class="button">Salvar Produto</button>
+        </form>
+        <p class="link"><a href="{% url 'listar_produtos' %}">Ver Lista de Produtos</a></p> {# Exemplo de link para outra página #}
+    </div>
+</body>
+</html>
